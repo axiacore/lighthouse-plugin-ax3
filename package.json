@@ -1,0 +1,12 @@
+{
+  "name": "lighthouse-plugin-ax3",
+  "version": "1.0.0",
+  "description": "Lighthouse plugin to audit Axiacore projects",
+  "main": "plugin.js",
+  "repository": "git@github.com:axiacore/lighthouse-plugin-ax3.git",
+  "author": "Felipe Gonzalez <felipe.gonzalez@axiacore.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "lighthouse": "^7.2.0"
+  }
+}
