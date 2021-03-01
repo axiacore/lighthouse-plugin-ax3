@@ -1,5 +1,12 @@
-node_modules
-package-lock.json
+# Yarn
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
+
 # Ignore any reports we generate
 *.html
 latest-run
