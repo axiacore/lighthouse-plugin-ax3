@@ -11,7 +11,7 @@ class EmptyAnchors extends Audit {
             failureTitle: 'has empty urls',
             description: 'Empty urls ',
             requiredArtifacts: ['AnchorElements'],
-            scoreDisplayMode: 'numeric'
+            //scoreDisplayMode: 'numeric'
         };
     }
 

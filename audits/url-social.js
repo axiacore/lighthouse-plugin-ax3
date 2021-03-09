@@ -1,6 +1,6 @@
 const {Audit} = require('lighthouse');
 
-class EmptyAnchors extends Audit {
+class SocialUrl extends Audit {
     /**
      * @return {LH.Audit.Meta}
      */
@@ -10,7 +10,6 @@ class EmptyAnchors extends Audit {
             title: 'Url Social',
             description: 'Social Media',
             requiredArtifacts: ['AnchorElements'],
-            scoreDisplayMode: 'notApplicable'
         };
     }
 
@@ -21,7 +20,7 @@ class EmptyAnchors extends Audit {
     static audit({AnchorElements: anchorElements}) {
         const amountElements = anchorElements; 
         const urlSocials = anchorElements.filter(({href}) => {
-            if (/(twitter.com.)|(instagram.com.)|(facebook)/gi.exec(href)) return true;
+            if (/(twitter.com.)|(instagram.com.)|(facebook.com)|(github.com)/gi.exec(href)) return true;
         });
         const headings = [{
             key: 'node',
@@ -34,10 +33,9 @@ class EmptyAnchors extends Audit {
             };
         });
         return {
-            score: null,
-            scoreDisplayMode: 'informative',
+            score: 1,
             details: Audit.makeTableDetails(headings, itemsToDisplay),
         };
     }
 }
-module.exports = EmptyAnchors;
+module.exports = SocialUrl;
