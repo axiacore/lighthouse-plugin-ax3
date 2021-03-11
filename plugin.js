@@ -3,7 +3,7 @@ module.exports = {
 
              {path: 'lighthouse-plugin-ax3/audits/url-social.js'},
 
-             {path: 'lighthouse-plugin-ax3/audits/server-response.js'}],
+             {path: 'lighthouse-plugin-ax3/audits/favicon-icon.js'}],
 
     category: {
         title: 'AX3',
@@ -13,16 +13,16 @@ module.exports = {
         
                     {id: 'url-social.js-id', weight: 3, group: 'links'},
 
-                    {id: 'server-response.js-id', weight: 1, group: 'ServerResponse'}],
+                    {id: 'favicon-icon.js-id', weight: 1, group: 'image'}],
     },
     groups: {
         'links': {
             title: 'Verification_htlm',
             description: 'Check the html and social networks',
         },
-        'ServerResponse': {
-            title: 'Response time',
-            description: 'Service response time',
+        'image': {
+            title: 'Image',
+            description: 'Image',
         }
     }
 };
