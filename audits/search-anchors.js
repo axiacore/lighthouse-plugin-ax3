@@ -24,9 +24,7 @@ class EmptyAnchors extends Audit {
             if (rawHref === ''|| rawHref ==='#') return true;
         });
         const headings = [{
-            key: 'node',
-            itemType: 'node',
-            text: 'Links',
+            key: 'node', itemType: 'node', text: 'Links',
         }];
         const itemsToDisplay = failingAnchors.map(anchor => {
             return {

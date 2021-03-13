@@ -9,7 +9,7 @@ class faviconIcon extends Audit {
             title: 'Image Favicon',
             id: 'favicon-icon.js-id',
             description: 'Image favicon proyect',
-            requiredArtifacts: ['LinkElements'],
+            requiredArtifacts: ['LinkElements','ImageElements'],
         };
     }
 
@@ -26,14 +26,21 @@ class faviconIcon extends Audit {
      
      */ 
     static audit({LinkElements: linkElements}){
-        console.log(linkElements)
         const iconFavicon = linkElements.filter(({rel}) => {
             if(rel == 'icon') return true;
         });
-        console.log(iconFavicon)
-         
-     }
-     
-
+        const headings = [{
+            key: 'node', itemType: 'thumbnail', text: 'text'
+        }]
+        const itemsToDisplay = iconFavicon.map(anchor => {
+            return {
+                node: Audit.makeNodeItem(anchor.node),
+            };
+        });
+        return {
+            score: 1,
+            details: Audit.makeTableDetails(headings,itemsToDisplay),
+     };
+    }
  }
  module.exports = faviconIcon;
