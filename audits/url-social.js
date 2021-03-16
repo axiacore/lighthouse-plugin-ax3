@@ -18,15 +18,12 @@ class SocialUrl extends Audit {
      * @return {LH.Audit.Product}
      */
     static audit({AnchorElements: anchorElements}) {
-        const amountElements = anchorElements; 
         const urlSocials = anchorElements.filter(({href}) => {
             if (/(twitter.com.)|(instagram.com.)|(facebook.com)|(github.com)/gi.exec(href)) return true;
         });
-        const headings = [{
-            key: 'node',
-            itemType: 'node',
-            text: 'Links',
-        }];
+        const headings = [
+            {key: 'node', itemType: 'node', text: 'Links'}
+        ];
         const itemsToDisplay = urlSocials.map(anchor => {
             return {
                 node: Audit.makeNodeItem(anchor.node),

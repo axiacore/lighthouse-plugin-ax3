@@ -20,29 +20,33 @@ class integrationExternal extends Audit {
      */
 
     static audit({JsUsage: jsUsage}){
-        
-        //console.log(Object.keys(jsUsage))
-        const integration = Object.keys(jsUsage)
-        let googleAnalytics, hotjar
-        integration.forEach(search => {
-          if(search.match(/(?<=\/gtag\/js\?id=)[^&]+$/)){
-            googleAnalytics = search.match(/(?<=\/gtag\/js\?id=)[^&]+$/)[0]
-          }else if(search.match(/(?<=hotjar-)[\d]+/)){
-            hotjar = search.match(/(?<=hotjar-)[\d]+/)[0]
-          }
-        })
-        console.log(googleAnalytics, hotjar)
-        const headings = [
-          {Key: 'Type', itemType: 'text', text: 'googleAnalytics'},
-          {Key: 'Result', itemType: 'text', text: 'hotjar'}      
-      ];
+        const integration = Object.keys(jsUsage);
+        const itemsType = [];
 
-      return {
-        score: 1,
-        details: Audit.makeTableDetails(headings)
-    };
-       
-   
+        let googleAnalytics, hotjar;
+
+        integration.forEach(search => {
+            if(search.match(/(?<=\/gtag\/js\?id=)[^&]+/gm)) {
+                googleAnalytics = search.match(/(?<=\/gtag\/js\?id=)[^&]+/gm)[0];
+                console.log(typeof googleAnalytics);
+            } else if(search.match(/(?<=hotjar-)[\d]+/gm)) {
+                hotjar = search.match(/(?<=hotjar-)[\d]+/gm)[0];
+            }
+        });
+        console.log(googleAnalytics, hotjar);
+        const headings = [
+            {Key: 'name', itemType: 'ms', text: 'Name'},
+            {Key: 'script', itemType: 'text', text: 'ID'}
+        ];
+
+        itemsType.push(
+            {name: 'Google Analytics', script: googleAnalytics},
+            {name: 'hotjar', script: hotjar});
+
+        return {
+            score: 1,
+            details: Audit.makeTableDetails(headings,itemsType)
+        };
     }
 }
 module.exports = integrationExternal;

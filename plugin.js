@@ -28,6 +28,6 @@ module.exports = {
         'integrations': {
             title: 'integrations',
             description: 'integrations'
+        }
     }
-}
 };
