@@ -9,7 +9,7 @@ class faviconIcon extends Audit {
             title: 'Image Favicon',
             id: 'favicon-icon.js-id',
             description: 'Image favicon proyect',
-            requiredArtifacts: ['LinkElements','ImageElements'],
+            requiredArtifacts: ['LinkElements', 'ImageElements'],
         };
     }
 
@@ -32,7 +32,7 @@ class faviconIcon extends Audit {
         });
         return {
             score: 1,
-            details: Audit.makeTableDetails(headings,itemsToDisplay),
+            details: Audit.makeTableDetails(headings, itemsToDisplay),
         };
     }
 }

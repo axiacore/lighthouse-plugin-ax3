@@ -8,7 +8,7 @@ class integrationExternal extends Audit {
         return {
             title: 'Google Analytics and hotjar',
             failureTitle: 'Lack of integration',
-            id: 'integrationExternal.js-id',
+            id: 'integration-external.js-id',
             description: 'Integration witch google Analytics and hotjar',
             requiredArtifacts: ['JsUsage'],
         };
@@ -23,29 +23,39 @@ class integrationExternal extends Audit {
         const integration = Object.keys(jsUsage);
         const itemsType = [];
 
-        let googleAnalytics, hotjar;
+        let googleAnalytics, hotjar, displayValue;
 
         integration.forEach(search => {
             if(search.match(/(?<=\/gtag\/js\?id=)[^&]+/gm)) {
                 googleAnalytics = search.match(/(?<=\/gtag\/js\?id=)[^&]+/gm)[0];
-                console.log(typeof googleAnalytics);
             } else if(search.match(/(?<=hotjar-)[\d]+/gm)) {
+                console.log(search);
                 hotjar = search.match(/(?<=hotjar-)[\d]+/gm)[0];
+                console.log(hotjar);
             }
         });
-        console.log(googleAnalytics, hotjar);
+
+        if(googleAnalytics == undefined){
+            displayValue == 'No integration Google Analytics';
+        } else if(hotjar == undefined){
+            displayValue == 'No integration Google hotjar';
+        }
+        /** @type {LH.Audit.Details.Table['headings']} */
         const headings = [
-            {Key: 'name', itemType: 'ms', text: 'Name'},
+            {Key: 'name', itemType: 'text', text: 'Name'},
             {Key: 'script', itemType: 'text', text: 'ID'}
         ];
 
         itemsType.push(
             {name: 'Google Analytics', script: googleAnalytics},
-            {name: 'hotjar', script: hotjar});
+            {name: 'Hotjar', script: hotjar}
+        );
+        const details = Audit.makeTableDetails(headings, itemsType);
 
         return {
-            score: 1,
-            details: Audit.makeTableDetails(headings,itemsType)
+            score: (googleAnalytics == undefined || hotjar == undefined) ? 0 : 1,
+            details,
+            displayValue,
         };
     }
 }
