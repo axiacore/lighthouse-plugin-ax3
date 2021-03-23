@@ -29,16 +29,14 @@ class integrationExternal extends Audit {
             if(search.match(/(?<=\/gtag\/js\?id=)[^&]+/gm)) {
                 googleAnalytics = search.match(/(?<=\/gtag\/js\?id=)[^&]+/gm)[0];
             } else if(search.match(/(?<=hotjar-)[\d]+/gm)) {
-                console.log(search);
                 hotjar = search.match(/(?<=hotjar-)[\d]+/gm)[0];
-                console.log(hotjar);
             }
         });
 
         if(googleAnalytics == undefined){
-            displayValue == 'No integration Google Analytics';
+            displayValue == 'Failed integration with Google Analytics';
         } else if(hotjar == undefined){
-            displayValue == 'No integration Google hotjar';
+            displayValue == 'Failed integration with Google hotjar';
         }
         /** @type {LH.Audit.Details.Table['headings']} */
         const headings = [
