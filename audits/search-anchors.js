@@ -9,7 +9,7 @@ class EmptyAnchors extends Audit {
             id: 'search-anchors.js-id',
             title: 'Search Url',
             failureTitle: 'has empty urls',
-            description: 'Empty urls ',
+            description: 'check urls without redirect',
             requiredArtifacts: ['AnchorElements']
         };
     }
