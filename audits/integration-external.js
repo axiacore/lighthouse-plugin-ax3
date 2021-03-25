@@ -6,10 +6,10 @@ class integrationExternal extends Audit {
      */
     static get meta() {
         return {
-            title: 'Google Analytics and hotjar',
-            failureTitle: 'Lack of integration',
+            title: 'Integration Google Analytics and hotjar',
+            failureTitle: 'it is not integrated with Google Analytics or hotjar',
             id: 'integration-external.js-id',
-            description: 'Integration witch google Analytics and hotjar',
+            description: 'Integration Id with google Analytics and hotjar',
             requiredArtifacts: ['JsUsage'],
         };
     }
@@ -40,14 +40,15 @@ class integrationExternal extends Audit {
         }
         /** @type {LH.Audit.Details.Table['headings']} */
         const headings = [
-            {Key: 'name', itemType: 'text', text: 'Name'},
-            {Key: 'script', itemType: 'text', text: 'ID'}
+            {text: ('Google Analytics ID = '+ googleAnalytics)},
+            {text: ('Hotjar ID = '+ hotjar)}
         ];
 
         itemsType.push(
-            {name: 'Google Analytics', script: googleAnalytics},
-            {name: 'Hotjar', script: hotjar}
+            {name: googleAnalytics },
+            {name: hotjar}
         );
+
         const details = Audit.makeTableDetails(headings, itemsType);
 
         return {
