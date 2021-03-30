@@ -26,12 +26,12 @@ class integrationExternal extends Audit {
         let googleAnalytics, hotjar, displayValue, optimize;
 
         integration.forEach(search => {
-            if(search.match(/(?<=\/gtag\/js\?id=)[^&]+/gm)) {
-                googleAnalytics = search.match(/(?<=\/gtag\/js\?id=)[^&]+/gm)[0];
+            if(search.match(/(?<=\/gtag\/js\?id=)(UA)[^&]+/gm)) {
+                googleAnalytics = search.match(/(?<=\/gtag\/js\?id=)(UA)[^&]+/gm)[0];
             } else if(search.match(/(?<=hotjar-)[\d]+/gm)) {
                 hotjar = search.match(/(?<=hotjar-)[\d]+/gm)[0];
-            } else if(search.match(/(?<=\/viewthroughconversion\/)[\d]+/gm)){
-                optimize = search.match(/(?<=\/viewthroughconversion\/)[\d]+/gm)[0];
+            } else if(search.match(/(?<=\/gtm\/js\?id=)(GTM)[^&]+/gm)){
+                optimize = search.match(/(?<=\/gtm\/js\?id=)(GTM)[^&]+/gm)[0];
             }
         });
 

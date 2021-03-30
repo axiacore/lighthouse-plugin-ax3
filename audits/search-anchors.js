@@ -31,8 +31,9 @@ class EmptyAnchors extends Audit {
                 node: Audit.makeNodeItem(anchor.node),
             };
         });
+
         return {
-            score: (amountElements.length - failingAnchors.length) / amountElements.length,
+            score: Math.floor((amountElements.length - failingAnchors.length) / amountElements.length),
             details: Audit.makeTableDetails(headings, itemsToDisplay),
         };
     }
