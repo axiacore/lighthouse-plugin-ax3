@@ -12,9 +12,9 @@ module.exports = {
             'Lighthouse plugin to audit Axiacore projects',
 
         auditRefs: [
-            {id: 'meta-description.js-id', weight: 2, group: 'links' },
-            {id: 'search-anchors.js-id', weight: 2, group: 'links' },
+            {id: 'meta-description.js-id', weight: 0, group: 'links' },
             {id: 'url-social.js-id', weight: 0, group: 'links'},
+            {id: 'search-anchors.js-id', weight: 2, group: 'links' },
             {id: 'favicon-icon.js-id', weight: 2, group: 'image'},
             {id: 'integration-external.js-id', weight: 1, group: 'integrations'}
         ],

@@ -18,17 +18,26 @@ class titleDescription extends Audit {
      * @return {LH.Audit.Product}
      */
     static audit({MetaElements: metaElements}) {
-        console.log(metaElements);
         const metaTitle = metaElements.filter(({property}) => {
-            if (property === 'og:title'| property ==='og:description' | property ==='og:image') return true;
+            if (property === 'og:title'| property === 'og:description') return true;
+        });
+        let imageMeta;
+        metaElements.forEach(element => {
+            if (element.property === 'og:image'){
+                imageMeta = element.content;
+            }
         });
 
         const headings = [
-            {key: 'meta', itemType: 'text', text: 'Meta Title - Description'},
+            {key: 'image', itemType: 'thumbnail', text: 'Image'},
+            {key: 'meta', itemType: 'text', text: 'Meta Title - Description'}
+
         ];
+
         let itemsTitle = metaTitle.map(metaText => {
             return {
                 meta: metaText.content,
+                image: imageMeta
             };
         });
 
