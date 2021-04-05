@@ -7,6 +7,7 @@
   "author": "Felipe Gonzalez <felipe.gonzalez@axiacore.com>",
   "license": "MIT",
   "devDependencies": {
-    "lighthouse": "^7.2.0"
+    "lighthouse": "^7.3.0",
+    "lighthouse-plugin-field-performance": "^2.2.1"
   }
 }
